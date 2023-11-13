@@ -30,6 +30,20 @@ def receive():
 
 def send(server, message):
     PORT = 65432 # The port used by the server
+    
+    mesg_len = False
+    while mesg_len == False:
+        message = input("Enter message (max 4096 characters): ")
+        if message.len() > 4096:
+            print("message length exceeds the limit")
+        else:
+            mesg_len = True
+
+    check == False
+    while(check == False):
+        recipIP = input("Inter Recipient IP: ")
+        check = validate(recipIP)
+
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.settimeout(30.0)#Time out of 30 seconds if not received
         s.connect((server, PORT))
@@ -75,20 +89,7 @@ def menu():
             print("\nGoodbye!")
             i = 0
         elif num == "1":
-            # send()
-            mesg_len = False
-            while mesg_len == False:
-                message = input("Enter message (max 4096 characters): ")
-                if message.len() > 4096:
-                    print("message length exceeds the limit")
-                else:
-                    mesg_len = True
-
-            check == False
-            while(check == False):
-                recipIP = input("Inter Recipient IP: ")
-                check = validate(recipIP)
-            send(recipIP,message)    
+            send()
             i = 0
         elif num == "2":
             receive()
