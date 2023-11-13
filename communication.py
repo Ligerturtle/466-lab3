@@ -50,7 +50,9 @@ def send(server, message):
             s.settimeout(None)#Always set timeout to none before sending.
             s.sendall(message.encode())
             data = s.recv(1024)
-    Except 
+            print("Message sent successfully.")
+    except: 
+        print("Message sending error. Message not sent.")
     # SERVER = "192.168.56.102" #IP Address of the recipient.
     # PORT = 65432 # The port used by the server
 
