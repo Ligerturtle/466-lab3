@@ -39,7 +39,7 @@ def send():
         else:
             mesg_len = True
 
-    check == False
+    check = False
     while(check == False):
         recipIP = input("Inter Recipient IP: ")
         check = validate(recipIP)
@@ -65,14 +65,15 @@ def send():
 
 def validate(ip_addr):
     check = True
-    split_IP = ip_addr.split()
+    split_IP = ip_addr.split(".")
+    print(split_IP)
     if((len(split_IP) < 5) and (len(split_IP) > 0)):
         for i in range(len(split_IP)):
             if not isinstance(int(split_IP[i]), int):
                 print("Error not a valid IPv4 Address:")
                 i == len(split_IP)
                 check == False
-            if (int(split_IP[i]) < 0) or (int(split_IP[i]) > 255):
+            if (int(split_IP[i]) < 0) and (int(split_IP[i]) > 255):
                 print("Error not a valid IPv4")
                 i == len(split_IP)
                 check == False
