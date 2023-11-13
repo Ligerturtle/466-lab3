@@ -1,32 +1,73 @@
 import socket
+import re
+import ipaddress
 
 MAX_CHAR = 4096
 
 def main():
+    menu()
+
+def menu():
     print("===The Python Communicator===\n" +
           "1) send message\n2) receive message\n0) exit")
     num = input("Enter option: ")
     i = 1
     while i != 0:
-        if num == 0:
+        if num == "0":
             print("Goodbye!")
             i = 0
-        elif num == 1:
+        elif num == "1":
             send()
+            message = input("Enter message (max 4096 characters): ")
+            check == False
+            while(check == False):
+                recipIP = input("Inter Recipient IP: ")
+                check = validate(recipIP)
+                
+                if(check == True): #if the IPv4 address is not valid
+                    return
+                
+                elif(): #if the
+                    return
+            
+                else: #
+                    return
+            
             i = 0
-        elif num == 2:
+        elif num == "2":
             receive()
             i = 0
         else:
             print("Error, invalid input")
+
+def validate(ip_addr):
+    check = True
+    split_IP = ip_addr.split()
+    if((len(split_IP) < 5) and (len(split_IP) > 0)):
+        for i in range(len(split_IP)):
+            if not isinstance(int(split_IP[i]), int):
+                print("Error not a valid IPv4 Address:")
+                i == len(split_IP)
+                check == False
+            if (int(split_IP[i]) < 0) or (int(split_IP[i]) > 255):
+                print("Error not a valid IPv4")
+                i == len(split_IP)
+                check == False
+    else:
+        print("Invalid IP Address length")
+        check == False
+    return check
+
+        
     
 def receive():
     VM_IP = "192.168.1.15"
     ALL_IP = ""
     PORT = 65432 # Port to listen on (non-privileged ports are > 1023)
 
-    message = input("Enter message (max 4096 characters): ")
-    recipIP = input("Inter Recipient IP: ")
+    
+
+
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind((ALL_IP, PORT)) #Inner brackets define a tuple
         s. settimeout(30.0)
