@@ -28,7 +28,7 @@ def receive():
                     print(data.decode(),end="#")
                 conn.sendall(data)
 
-def send(server, message):
+def send():
     PORT = 65432 # The port used by the server
     
     mesg_len = False
@@ -46,7 +46,7 @@ def send(server, message):
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.settimeout(30.0)#Time out of 30 seconds if not received
-            s.connect((server, PORT))
+            s.connect((recipIP, PORT))
             s.settimeout(None)#Always set timeout to none before sending.
             s.sendall(message.encode())
             data = s.recv(1024)
