@@ -43,13 +43,14 @@ def send(server, message):
     while(check == False):
         recipIP = input("Inter Recipient IP: ")
         check = validate(recipIP)
-
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.settimeout(30.0)#Time out of 30 seconds if not received
-        s.connect((server, PORT))
-        s.settimeout(None)#Always set timeout to none before sending.
-        s.sendall(message.encode())
-        data = s.recv(1024)
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.settimeout(30.0)#Time out of 30 seconds if not received
+            s.connect((server, PORT))
+            s.settimeout(None)#Always set timeout to none before sending.
+            s.sendall(message.encode())
+            data = s.recv(1024)
+    Except 
     # SERVER = "192.168.56.102" #IP Address of the recipient.
     # PORT = 65432 # The port used by the server
 
