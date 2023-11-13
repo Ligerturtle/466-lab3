@@ -3,62 +3,6 @@ import re
 import ipaddress
 
 MAX_CHAR = 4096
-
-def main():
-    menu()
-
-def menu():
-    print("===The Python Communicator===\n" +
-          "1) send message\n2) receive message\n0) exit")
-    num = input("Enter option: ")
-    i = 1
-    while i != 0:
-        if num == "0":
-            print("Goodbye!")
-            i = 0
-        elif num == "1":
-            send()
-            message = input("Enter message (max 4096 characters): ")
-            check == False
-            while(check == False):
-                recipIP = input("Inter Recipient IP: ")
-                check = validate(recipIP)
-                
-                if(check == True): #if the IPv4 address is not valid
-                    return
-                
-                elif(): #if the
-                    return
-            
-                else: #
-                    return
-            
-            i = 0
-        elif num == "2":
-            receive()
-            i = 0
-        else:
-            print("Error, invalid input")
-
-def validate(ip_addr):
-    check = True
-    split_IP = ip_addr.split()
-    if((len(split_IP) < 5) and (len(split_IP) > 0)):
-        for i in range(len(split_IP)):
-            if not isinstance(int(split_IP[i]), int):
-                print("Error not a valid IPv4 Address:")
-                i == len(split_IP)
-                check == False
-            if (int(split_IP[i]) < 0) or (int(split_IP[i]) > 255):
-                print("Error not a valid IPv4")
-                i == len(split_IP)
-                check == False
-    else:
-        print("Invalid IP Address length")
-        check == False
-    return check
-
-        
     
 def receive():
     VM_IP = "192.168.1.15"
@@ -84,13 +28,73 @@ def receive():
                     print(data.decode(),end="#")
                 conn.sendall(data)
 
-def send():
-    SERVER = "192.168.56.102" #IP Address of the recipient.
+def send(server, message):
     PORT = 65432 # The port used by the server
-
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.settimeout(30.0)#Time out of 30 seconds if not received
-        s.connect((SERVER, PORT))
+        s.connect((server, PORT))
         s.settimeout(None)#Always set timeout to none before sending.
-        s.sendall(b"Hello, world")
+        s.sendall(message.encode())
         data = s.recv(1024)
+    # SERVER = "192.168.56.102" #IP Address of the recipient.
+    # PORT = 65432 # The port used by the server
+
+    # with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    #     s.settimeout(30.0)#Time out of 30 seconds if not received
+    #     s.connect((SERVER, PORT))
+    #     s.settimeout(None)#Always set timeout to none before sending.
+    #     s.sendall(b"Hello, world")
+    #     data = s.recv(1024)
+
+def validate(ip_addr):
+    check = True
+    split_IP = ip_addr.split()
+    if((len(split_IP) < 5) and (len(split_IP) > 0)):
+        for i in range(len(split_IP)):
+            if not isinstance(int(split_IP[i]), int):
+                print("Error not a valid IPv4 Address:")
+                i == len(split_IP)
+                check == False
+            if (int(split_IP[i]) < 0) or (int(split_IP[i]) > 255):
+                print("Error not a valid IPv4")
+                i == len(split_IP)
+                check == False
+    else:
+        print("Invalid IP Address length")
+        check == False
+    return check
+
+def menu():
+    print("===The Python Communicator===\n" +
+          "1) send message\n2) receive message\n0) exit")
+    # num = input("Enter option: ")
+    i = 1
+    while i != 0:
+        num = input("Enter option: ")
+        if num == "0":
+            print("\nGoodbye!")
+            i = 0
+        elif num == "1":
+            # send()
+            mesg_len = False
+            while mesg_len == False:
+                message = input("Enter message (max 4096 characters): ")
+                if message.len() > 4096:
+                    print("message length exceeds the limit")
+                else:
+                    mesg_len = True
+
+            check == False
+            while(check == False):
+                recipIP = input("Inter Recipient IP: ")
+                check = validate(recipIP)
+            send(recipIP,message)    
+            i = 0
+        elif num == "2":
+            receive()
+            i = 0
+        else:
+            print("Error, invalid input")
+
+def main():
+    menu()
