@@ -1,3 +1,4 @@
+from posixpath import split
 import socket
 import re
 import ipaddress
@@ -66,20 +67,21 @@ def send():
 def validate(ip_addr):
     check = True
     split_IP = ip_addr.split(".")
-    print(split_IP)
     if((len(split_IP) < 5) and (len(split_IP) > 0)):
         for i in range(len(split_IP)):
-            if not isinstance(int(split_IP[i]), int):
+            try:
+                if (int(split_IP[i]) < 0) or (int(split_IP[i]) > 255):
+                    print("Error not a valid IPv4:")
+                    check = False
+                    break
+            except:
                 print("Error not a valid IPv4 Address:")
-                i == len(split_IP)
-                check == False
-            if (int(split_IP[i]) < 0) and (int(split_IP[i]) > 255):
-                print("Error not a valid IPv4")
-                i == len(split_IP)
-                check == False
-    else:
-        print("Invalid IP Address length")
-        check == False
+                check = False
+                break
+    if(len(split_IP) != 4):
+        print("Error not a valid IPv4:")
+        check = False
+    
     return check
 
 def menu():
