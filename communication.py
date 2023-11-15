@@ -35,7 +35,7 @@ def send():
     mesg_len = False
     while mesg_len == False:
         message = input("Enter message (max 4096 characters): ")
-        if len(message) > 4096:
+        if len(message) > MAX_CHAR:
             print("message length exceeds the limit")
         else:
             mesg_len = True
