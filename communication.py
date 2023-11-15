@@ -42,7 +42,7 @@ def send():
 
     check = False
     while(check == False):
-        recipIP = input("Inter Recipient IP: ")
+        recipIP = input("Enter Recipient IP: ")
         check = validate(recipIP)
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
