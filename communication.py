@@ -47,11 +47,17 @@ def send():
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.settimeout(30.0)#Time out of 30 seconds if not received
+            
             s.connect((recipIP, PORT))
+            
             s.settimeout(None)#Always set timeout to none before sending.
+           
             s.sendall(message.encode())
-            data = s.recv(1024)
+           
+            #data = s.recv(1024)
+            
             print("Message sent successfully.")
+            
     except: 
         print("Message sending error. Message not sent.")
     # SERVER = "192.168.56.102" #IP Address of the recipient.
