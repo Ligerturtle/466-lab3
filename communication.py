@@ -10,7 +10,7 @@ def receive():
     ALL_IP = ""
     PORT = 65432 # Port to listen on (non-privileged ports are > 1023)
 
-    
+    print("Waiting for message on port " + PORT)
 
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
