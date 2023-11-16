@@ -61,8 +61,9 @@ def send():
             print("data received")
             print("Message sent successfully.")
             
-    except: 
+    except Exception as e: 
         print("Message sending error. Message not sent.")
+        print(e)
     # SERVER = "192.168.56.102" #IP Address of the recipient.
     # PORT = 65432 # The port used by the server
 
