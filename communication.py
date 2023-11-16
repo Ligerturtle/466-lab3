@@ -29,8 +29,8 @@ def receive():
                     if not data:
                         exit = True
                     else:
-                        print(data.decode(),end="#")
-                    conn.sendall(data)
+                        print("Message\n" + data.decode() + "\nEnd of message.")
+                    conn.sendall("#<<END>>#".encode())
     except:
         print("Connection timed out.")
 
@@ -51,8 +51,7 @@ def send():
         check = validate(recipIP)
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            # s.settimeout(30.0)#Time out of 30 seconds if not received
-            s.settimeout(5000)
+            s.settimeout(30.0)#Time out of 30 seconds if not received
             print("connect func before")
             s.connect((recipIP, PORT))
             # s.bind((recipIP, PORT))
