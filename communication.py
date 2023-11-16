@@ -17,19 +17,19 @@ def receive():
             s.bind((ALL_IP, PORT)) #Inner brackets define a tuple
             s. settimeout(30.0)
             s.listen()
-            print("<Listening>")
+            # print("<Listening>")
             conn, addr = s.accept()
             with conn:
                 print(f"Connected by {addr}")
                 exit = False
                 while not exit:
-                    print("<Waiting>")
+                    # print("<Waiting>")
                     data = conn.recv(1024)
-                    print("<Received>")
+                    # print("<Received>")
                     if not data:
                         exit = True
                     else:
-                        print("Message\n" + data.decode() + "\nEnd of message.")
+                        print("Message:\n" + data.decode() + "\nEnd of message.")
                     conn.sendall("#<<END>>#".encode())
     except:
         print("Connection timed out.")
@@ -52,16 +52,16 @@ def send():
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.settimeout(30.0)#Time out of 30 seconds if not received
-            print("connect func before")
+            # print("connect func before")
             s.connect((recipIP, PORT))
             # s.bind((recipIP, PORT))
-            print("connect func after")
+            # print("connect func after")
             s.settimeout(None)#Always set timeout to none before sending.
-            print("sendall func before")
+            # print("sendall func before")
             s.sendall(message.encode())
             print(message.encode())
             #data = s.recv(1024)
-            print("data received")
+            print("Sending.")
             print("Message sent successfully.")
             
     except Exception as e: 
