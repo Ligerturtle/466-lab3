@@ -17,12 +17,15 @@ def receive():
             s.bind((ALL_IP, PORT)) #Inner brackets define a tuple
             s. settimeout(30.0)
             s.listen()
+            print("<Listening>")
             conn, addr = s.accept()
             with conn:
                 print(f"Connected by {addr}")
                 exit = False
                 while not exit:
+                    print("<Waiting>")
                     data = conn.recv(1024)
+                    print("<Received>")
                     if not data:
                         exit = True
                     else:
@@ -48,7 +51,8 @@ def send():
         check = validate(recipIP)
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.settimeout(30.0)#Time out of 30 seconds if not received
+            # s.settimeout(30.0)#Time out of 30 seconds if not received
+            s.settimeout(5000)
             print("connect func before")
             s.connect((recipIP, PORT))
             # s.bind((recipIP, PORT))
