@@ -20,7 +20,7 @@ def receive():
             # print("<Listening>")
             conn, addr = s.accept()
             with conn:
-                print(f"Connected by {addr[0]}")
+                print(f"Connected by ({addr[0]})")
                 exit = False
                 while not exit:
                     # print("<Waiting>")
