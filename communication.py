@@ -20,7 +20,7 @@ def receive():
             # print("<Listening>")
             conn, addr = s.accept()
             with conn:
-                print(f"Connected by {addr}")
+                print(f"Connected by {addr[0]}")
                 exit = False
                 while not exit:
                     # print("<Waiting>")
@@ -59,7 +59,7 @@ def send():
             s.settimeout(None)#Always set timeout to none before sending.
             # print("sendall func before")
             s.sendall(message.encode())
-            print(message.encode())
+            # print(message.encode())
             #data = s.recv(1024)
             print("Sending.")
             print("Message sent successfully.")
