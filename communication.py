@@ -12,22 +12,24 @@ def receive():
 
     print("Waiting for message on port " + str(PORT))
 
-
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.bind((ALL_IP, PORT)) #Inner brackets define a tuple
-        s. settimeout(30.0)
-        s.listen()
-        conn, addr = s.accept()
-        with conn:
-            print(f"Connected by {addr}")
-            exit = False
-            while not exit:
-                data = conn.recv(1024)
-                if not data:
-                    exit = True
-                else:
-                    print(data.decode(),end="#")
-                conn.sendall(data)
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.bind((ALL_IP, PORT)) #Inner brackets define a tuple
+            s. settimeout(30.0)
+            s.listen()
+            conn, addr = s.accept()
+            with conn:
+                print(f"Connected by {addr}")
+                exit = False
+                while not exit:
+                    data = conn.recv(1024)
+                    if not data:
+                        exit = True
+                    else:
+                        print(data.decode(),end="#")
+                    conn.sendall(data)
+    except:
+        print("Connection timed out.")
 
 def send():
     PORT = 65432 # The port used by the server
