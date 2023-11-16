@@ -50,8 +50,8 @@ def send():
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.settimeout(30.0)#Time out of 30 seconds if not received
             print("connect func before")
-            # s.connect((recipIP, PORT))
-            s.bind((recipIP, PORT))
+            s.connect((recipIP, PORT))
+            # s.bind((recipIP, PORT))
             print("connect func after")
             s.settimeout(None)#Always set timeout to none before sending.
             print("sendall func before")
