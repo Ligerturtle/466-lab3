@@ -11,7 +11,7 @@ def receive():
     PORT = 65432 # Port to listen on (non-privileged ports are > 1023)
 
     print("Waiting for message on port " + str(PORT))
-
+    end_mesg = "#<<END>>#"
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.bind((ALL_IP, PORT)) #Inner brackets define a tuple
@@ -30,7 +30,7 @@ def receive():
                         exit = True
                     else:
                         print("Message:\n" + data.decode() + "\nEnd of message.")
-                    conn.sendall("#<<END>>#".encode())
+                        conn.sendall(end_mesg.encode())
     except:
         print("Connection timed out.")
 
