@@ -63,6 +63,7 @@ def send():
             #data = s.recv(1024)
             print("Sending.")
             print("Message sent successfully.")
+            menu()
             
     except Exception as e: 
         print("Message sending error. Message not sent.")
@@ -98,7 +99,7 @@ def validate(ip_addr):
     return check
 
 def menu():
-    print("===The Python Communicator===\n" +
+    print("\n===The Python Communicator===\n" +
           "1) send message\n2) receive message\n0) exit")
     # num = input("Enter option: ")
     i = 1
